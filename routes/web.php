@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'HOME PAGE';
 });
 
-Route::get('categoria', function () {
-    return "Estoy en la pagina de producto";
+Route::get('productos', [userController::class,'listProducts'] );
+
+Route::get('productos/detalle', [userController::class,'detalle'] );
+
+
+
+
+Route::get('productos/{id}', function ($id) {
+    return "el nombre del producto es: $id";
+});
+
+Route::get('productos/{id}/{categoria}', function ($id,$categoria) {
+    return "el nombre del producto es: $id con la categoria $categoria";
 });
 
